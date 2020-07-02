@@ -1,15 +1,25 @@
 import { EnvError, makeValidator } from 'envalid';
-import { isValid, process } from 'ipaddr.js';
-export type { IPv4, IPv6 } from 'ipaddr.js';
+import { isValid, process, IPv4, IPv6 } from 'ipaddr.js';
+export type { IPv4, IPv6 };
 
-export const ipList = makeValidator((input: string) => {
-    const trimmed = input.trim();
-    if (!trimmed) {
-        return [];
+export const ipList = makeValidator((input: string | string[]) => {
+    let items: string[];
+    if (typeof input === 'string') {
+        const trimmed = input.trim();
+        if (!trimmed) {
+            return [];
+        }
+
+        items = trimmed.split(',');
+    } else {
+        items = input;
     }
 
-    const items = input.split(',').map((s) => s.trim());
-    const valid = items.every((ip) => isValid(ip));
+    const valid = items.every((ip, idx, arr) => {
+        ip = ip.trim();
+        arr[idx] = ip;
+        return isValid(ip);
+    });
 
     if (!valid) {
         throw new EnvError(`Invalid IP list input: "${input}"`);
@@ -18,14 +28,20 @@ export const ipList = makeValidator((input: string) => {
     return items;
 }, 'ipList');
 
-export const ipListEx = makeValidator((input: string) => {
-    const trimmed = input.trim();
-    if (!trimmed) {
+export const ipListEx = makeValidator((input: string | (IPv4 | IPv6)[]) => {
+    if (Array.isArray(input)) {
+        // This can only happen if we get a default value
+        return input;
+    }
+
+    if (!input.trim()) {
         return [];
     }
 
+    const items = input.split(',');
+
     try {
-        return input.split(',').map((s) => process(s.trim()));
+        return items.map((s) => process(s.trim()));
     } catch (e) {
         throw new EnvError(`Invalid IP list input: "${input}"`);
     }

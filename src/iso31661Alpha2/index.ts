@@ -10,13 +10,17 @@ export const iso31661Alpha2 = makeValidator((input: string) => {
     throw new EnvError(`Invalid ISO 3166-1 alpha-2 input: "${input}"`);
 }, 'iso31661Alpha2');
 
-export const iso31661Alpha2List = makeValidator((input: string) => {
-    const uppercased = input.trim().toUpperCase();
-    if (!uppercased) {
-        return [];
+export const iso31661Alpha2List = makeValidator((input: string | string[]) => {
+    if (typeof input === 'string') {
+        input = input.trim();
+        if (!input) {
+            return [];
+        }
+
+        input = input.split(',');
     }
 
-    const items = uppercased.split(',').map((s) => s.trim());
+    const items = input.map((s) => s.trim().toUpperCase());
     const valid = items.every((s) => validator.isISO31661Alpha2(s));
 
     if (valid) {

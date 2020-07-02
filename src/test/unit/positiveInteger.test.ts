@@ -1,5 +1,5 @@
 import { EnvError } from 'envalid';
-import { positiveInteger } from '../';
+import { positiveInteger } from '../../';
 
 const validator = positiveInteger();
 
