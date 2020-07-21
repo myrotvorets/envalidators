@@ -23,7 +23,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.5",
     "@types/validator": "^13.1.0",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
     "envalid": "^6.0.2",
     "eslint": "^7.5.0",
