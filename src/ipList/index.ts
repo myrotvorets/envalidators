@@ -1,5 +1,5 @@
 import { EnvError, makeValidator } from 'envalid';
-import { isValid, process, IPv4, IPv6 } from 'ipaddr.js';
+import { IPv4, IPv6, isValid, process } from 'ipaddr.js';
 export type { IPv4, IPv6 };
 
 export const ipList = makeValidator((input: string | string[]) => {
