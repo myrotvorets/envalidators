@@ -1,5 +1,5 @@
 import { cleanEnv } from 'envalid';
-import { ipList, ipListEx } from '../../';
+import { ipList, ipListEx } from '../../src';
 
 describe('ipList', (): void => {
     it('should handle arrays for `default`', (): void => {

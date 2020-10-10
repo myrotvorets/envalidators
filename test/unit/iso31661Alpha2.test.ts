@@ -1,5 +1,5 @@
 import { EnvError } from 'envalid';
-import { iso31661Alpha2, iso31661Alpha2List } from '../../';
+import { iso31661Alpha2, iso31661Alpha2List } from '../../src';
 
 const validator = iso31661Alpha2();
 const validatorList = iso31661Alpha2List();
