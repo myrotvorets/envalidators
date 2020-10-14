@@ -24,10 +24,10 @@
   "author": "Myrotvorets <support@myrotvorets.center> (https://myrotvorets.center/)",
   "license": "MIT",
   "devDependencies": {
-    "@myrotvorets/eslint-config-myrotvorets-ts": "^1.2.2",
+    "@myrotvorets/eslint-config-myrotvorets-ts": "^1.2.3",
     "@types/jest": "^26.0.14",
     "@types/validator": "^13.1.0",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
     "envalid": "^6.0.2",
     "eslint": "^7.11.0",
     "eslint-plugin-import": "^2.22.1",
