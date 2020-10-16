@@ -1,5 +1,5 @@
 import { EnvError } from 'envalid';
-import { portOrZero } from '../../src';
+import { portOrZero } from '../../lib';
 
 const validator = portOrZero();
 

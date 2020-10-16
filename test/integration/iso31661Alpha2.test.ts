@@ -1,5 +1,5 @@
 import { cleanEnv } from 'envalid';
-import { iso31661Alpha2List } from '../../src';
+import { iso31661Alpha2List } from '../../lib';
 
 describe('iso31661Alpha2List', (): void => {
     it.each([[['UA', 'US', 'GB']], [[' ua ', ' us   ', 'gb']]])(

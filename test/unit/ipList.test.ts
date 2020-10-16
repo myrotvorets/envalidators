@@ -1,6 +1,6 @@
 import { EnvError } from 'envalid';
 import { process } from 'ipaddr.js';
-import { IPv4, IPv6, ipList, ipListEx } from '../../src';
+import { IPv4, IPv6, ipList, ipListEx } from '../../lib';
 
 const validator = ipList();
 const validatorEx = ipListEx();
