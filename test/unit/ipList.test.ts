@@ -9,7 +9,7 @@ describe('ipList', (): void => {
     it.each([['ip.ad.dr.es'], ['1::1::1'], ['256.256.256.256'], ['::DEFG'], ['null']])(
         'should reject invalid IPs (%s)',
         (input: string) => {
-            expect(() => validator._parse(input)).toThrowError(EnvError);
+            expect(() => validator._parse(input)).toThrow(EnvError);
         },
     );
 
@@ -30,7 +30,7 @@ describe('ipListEx', (): void => {
     it.each([['ip.ad.dr.es'], ['1::1::1'], ['256.256.256.256'], ['::DEFG'], ['null']])(
         'should reject invalid IPs (%s)',
         (input: string) => {
-            expect(() => validatorEx._parse(input)).toThrowError(EnvError);
+            expect(() => validatorEx._parse(input)).toThrow(EnvError);
         },
     );
 

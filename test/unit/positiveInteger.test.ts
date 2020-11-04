@@ -7,7 +7,7 @@ describe('positiveInteger', (): void => {
     it.each([['bad'], ['123.0'], ['-1'], ['false'], ['null'], ['0'], ['']])(
         'should reject invalid input (%s)',
         (input: string) => {
-            expect(() => validator._parse(input)).toThrowError(EnvError);
+            expect(() => validator._parse(input)).toThrow(EnvError);
         },
     );
 

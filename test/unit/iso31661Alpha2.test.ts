@@ -6,7 +6,7 @@ const validatorList = iso31661Alpha2List();
 
 describe('iso31661Alpha2', (): void => {
     it.each([['bad'], ['A'], ['11'], ['UKR'], ['null'], ['']])('should reject invalid input (%s)', (input: string) => {
-        expect(() => validator._parse(input)).toThrowError(EnvError);
+        expect(() => validator._parse(input)).toThrow(EnvError);
     });
 
     it.each(
@@ -28,7 +28,7 @@ describe('iso31661Alpha2List', (): void => {
     });
 
     it('should fail if there are invalid items in the list', () => {
-        expect(() => validatorList._parse('UA,UK,US')).toThrowError(EnvError);
+        expect(() => validatorList._parse('UA,UK,US')).toThrow(EnvError);
     });
 
     it.each([

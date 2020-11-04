@@ -7,7 +7,7 @@ describe('portOrZero', (): void => {
     it.each([['bad'], ['123.0'], ['-1'], ['65536'], ['null'], ['']])(
         'should reject invalid input (%s)',
         (input: string) => {
-            expect(() => validator._parse(input)).toThrowError(EnvError);
+            expect(() => validator._parse(input)).toThrow(EnvError);
         },
     );
 
