@@ -26,7 +26,7 @@ export const ipList = makeValidator((input: string | string[]) => {
     }
 
     return items;
-}, 'ipList');
+});
 
 export const ipListEx = makeValidator((input: string | (IPv4 | IPv6)[]) => {
     if (Array.isArray(input)) {
@@ -45,4 +45,4 @@ export const ipListEx = makeValidator((input: string | (IPv4 | IPv6)[]) => {
     } catch (e) {
         throw new EnvError(`Invalid IP list input: "${input}"`);
     }
-}, 'ipListEx');
+});

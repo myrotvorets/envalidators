@@ -7,4 +7,4 @@ export const positiveInteger = makeValidator((input: string) => {
     }
 
     return coerced;
-}, 'positiveInteger');
+});

@@ -8,7 +8,7 @@ export const iso31661Alpha2 = makeValidator((input: string) => {
     }
 
     throw new EnvError(`Invalid ISO 3166-1 alpha-2 input: "${input}"`);
-}, 'iso31661Alpha2');
+});
 
 export const iso31661Alpha2List = makeValidator((input: string | string[]) => {
     if (typeof input === 'string') {
@@ -28,4 +28,4 @@ export const iso31661Alpha2List = makeValidator((input: string | string[]) => {
     }
 
     throw new EnvError(`Invalid ISO 3166-1 alpha-2 list input: "${input}"`);
-}, 'iso31661Alpha2List');
+});
