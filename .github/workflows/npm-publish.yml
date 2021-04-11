@@ -1,49 +1,48 @@
 name: Publish Package
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types:
+      - released
+  workflow_dispatch:
+    inputs:
+      npm:
+        default: "yes"
+        description: Publish to NPM?
+        required: true
+      gpr:
+        default: "yes"
+        description: Publish to GPR?
+        required: true
+
+env:
+  NODE_VERSION: 14
 
 jobs:
-  publish:
+  prepare:
+    name: Prepare the source code
     runs-on: ubuntu-latest
+    if: github.event_name == 'release' || github.event.inputs.npm == 'yes' || github.event.inputs.gpr == 'yes'
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.tag_name }}
 
-      - name: Set up Node.js
+      - name: Set up Node.js environment
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Run clean install
-        run: npm ci
-
-      - name: Set up Node.js and configure it for GitHub package registry
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-
-      - name: Publish to GitHub package registry
-        run: npm publish
+      - name: Cache Node modules
+        uses: actions/cache@v2.1.4
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Remove .npmrc created by actions/setup-node
-        run: rm -f "$NPM_CONFIG_USERCONFIG"
-
-      - name: Set up Node.js and configure it for npmjs package registry
-        uses: actions/setup-node@v2.1.5
+          cache-name: cache-node-modules
         with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-
-      - name: Publish to npmjs package registry
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-{{ runner.os }}-build-${{ env.cache-name }}-${{ env.NODE_VERSION }}-
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ env.NODE_VERSION }}-
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
       - name: Install dependencies
