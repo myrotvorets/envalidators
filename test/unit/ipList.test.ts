@@ -1,5 +1,5 @@
 import { EnvError } from 'envalid';
-import { process } from 'ipaddr.js';
+import ipaddr from 'ipaddr.js';
 import { IPv4, IPv6, ipList, ipListEx } from '../../lib';
 
 const validator = ipList();
@@ -39,9 +39,9 @@ describe('ipListEx', (): void => {
     });
 
     it.each([
-        ['127.0.0.1,::1', ['127.0.0.1', '::1'].map((s) => process(s))],
-        ['::FFFF:169.219.13.133', ['::FFFF:169.219.13.133'].map((s) => process(s))],
-        [' 192.168.1.1, 10.0.0.1 , 10.0.0.2', ['192.168.1.1', '10.0.0.1', '10.0.0.2'].map((s) => process(s))],
+        ['127.0.0.1,::1', ['127.0.0.1', '::1'].map((s) => ipaddr.process(s))],
+        ['::FFFF:169.219.13.133', ['::FFFF:169.219.13.133'].map((s) => ipaddr.process(s))],
+        [' 192.168.1.1, 10.0.0.1 , 10.0.0.2', ['192.168.1.1', '10.0.0.1', '10.0.0.2'].map((s) => ipaddr.process(s))],
     ])('should accept valid IPs (%s)', (input: string, expected: (IPv4 | IPv6)[]): void => {
         expect(validatorEx._parse(input)).toEqual(expected);
     });

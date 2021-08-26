@@ -1,5 +1,5 @@
 import { EnvError, makeValidator } from 'envalid';
-import { IPv4, IPv6, isValid, process } from 'ipaddr.js';
+import ipaddr, { IPv4, IPv6, isValid } from 'ipaddr.js';
 export type { IPv4, IPv6 };
 
 export const ipList = makeValidator((input: string | string[]) => {
@@ -41,7 +41,7 @@ export const ipListEx = makeValidator((input: string | (IPv4 | IPv6)[]) => {
     const items = input.split(',');
 
     try {
-        return items.map((s) => process(s.trim()));
+        return items.map((s) => ipaddr.process(s.trim()));
     } catch (e) {
         throw new EnvError(`Invalid IP list input: "${input}"`);
     }
