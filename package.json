@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "ipaddr.js": "^2.0.0",
-    "validator": "^13.5.2"
+    "validator": "^13.7.0"
   },
   "peerDependencies": {
     "envalid": "^6.0.0 || ^7.0.0"
