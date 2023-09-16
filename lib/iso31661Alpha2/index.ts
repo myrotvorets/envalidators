@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import { EnvError, makeValidator } from 'envalid';
 import validator from 'validator';
 
