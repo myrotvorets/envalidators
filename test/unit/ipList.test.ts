@@ -1,48 +1,51 @@
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
 import { EnvError } from 'envalid';
 import ipaddr from 'ipaddr.js';
-import { IPv4, IPv6, ipList, ipListEx } from '../../lib';
+import { ipList, ipListEx } from '../../lib';
 
 const validator = ipList();
 const validatorEx = ipListEx();
 
-describe('ipList', (): void => {
-    it.each([['ip.ad.dr.es'], ['1::1::1'], ['256.256.256.256'], ['::DEFG'], ['null']])(
-        'should reject invalid IPs (%s)',
-        (input: string) => {
-            expect(() => validator._parse(input)).toThrow(EnvError);
-        },
+describe('ipList', () => {
+    ['ip.ad.dr.es', '1::1::1', '256.256.256.256', '::DEFG', 'null'].forEach((input) =>
+        it(`should reject invalid IPs (${input})`, () => expect(() => validator._parse(input)).to.throw(EnvError)),
     );
 
-    it.each([[''], [' ']])('should accept empty list', (input: string): void => {
-        expect(validator._parse(input)).toEqual([]);
-    });
+    ['', ' '].forEach((input) =>
+        it('should accept empty list', () => expect(validator._parse(input)).to.deep.equal([])),
+    );
 
-    it.each([
-        ['127.0.0.1,::1', ['127.0.0.1', '::1']],
-        ['::FFFF:169.219.13.133', ['::FFFF:169.219.13.133']],
-        [' 192.168.1.1, 10.0.0.1 , 10.0.0.2', ['192.168.1.1', '10.0.0.1', '10.0.0.2']],
-    ])('should accept valid IPs (%s)', (input: string, expected: string[]): void => {
-        expect(validator._parse(input)).toEqual(expected);
-    });
+    (
+        [
+            ['127.0.0.1,::1', ['127.0.0.1', '::1']],
+            ['::FFFF:169.219.13.133', ['::FFFF:169.219.13.133']],
+            [' 192.168.1.1, 10.0.0.1 , 10.0.0.2', ['192.168.1.1', '10.0.0.1', '10.0.0.2']],
+        ] as const
+    ).forEach(([input, expected]) =>
+        it(`should accept valid IPs (${input})`, () => expect(validator._parse(input)).to.deep.equal(expected)),
+    );
 });
 
-describe('ipListEx', (): void => {
-    it.each([['ip.ad.dr.es'], ['1::1::1'], ['256.256.256.256'], ['::DEFG'], ['null']])(
-        'should reject invalid IPs (%s)',
-        (input: string) => {
-            expect(() => validatorEx._parse(input)).toThrow(EnvError);
-        },
+describe('ipListEx', () => {
+    ['ip.ad.dr.es', '1::1::1', '256.256.256.256', '::DEFG', 'null'].forEach((input) =>
+        it(`should reject invalid IPs (${input})`, () => expect(() => validatorEx._parse(input)).to.throw(EnvError)),
     );
 
-    it.each([[''], [' ']])('should accept empty list', (input: string): void => {
-        expect(validatorEx._parse(input)).toEqual([]);
-    });
+    ['', ' '].forEach((input) =>
+        it('should accept empty list', () => expect(validatorEx._parse(input)).to.deep.equal([])),
+    );
 
-    it.each([
-        ['127.0.0.1,::1', ['127.0.0.1', '::1'].map((s) => ipaddr.process(s))],
-        ['::FFFF:169.219.13.133', ['::FFFF:169.219.13.133'].map((s) => ipaddr.process(s))],
-        [' 192.168.1.1, 10.0.0.1 , 10.0.0.2', ['192.168.1.1', '10.0.0.1', '10.0.0.2'].map((s) => ipaddr.process(s))],
-    ])('should accept valid IPs (%s)', (input: string, expected: (IPv4 | IPv6)[]): void => {
-        expect(validatorEx._parse(input)).toEqual(expected);
-    });
+    (
+        [
+            ['127.0.0.1,::1', ['127.0.0.1', '::1'].map((s) => ipaddr.process(s))],
+            ['::FFFF:169.219.13.133', ['::FFFF:169.219.13.133'].map((s) => ipaddr.process(s))],
+            [
+                ' 192.168.1.1, 10.0.0.1 , 10.0.0.2',
+                ['192.168.1.1', '10.0.0.1', '10.0.0.2'].map((s) => ipaddr.process(s)),
+            ],
+        ] as const
+    ).forEach(([input, expected]) =>
+        it(`should accept valid IPs (${input})`, () => expect(validatorEx._parse(input)).to.deep.equal(expected)),
+    );
 });
