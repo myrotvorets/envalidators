@@ -32,7 +32,7 @@
   "devDependencies": {
     "@myrotvorets/eslint-config-myrotvorets-ts": "^2.22.5",
     "@types/chai": "^4.3.9",
-    "@types/mocha": "^10.0.2",
+    "@types/mocha": "^10.0.3",
     "@types/validator": "^13.11.3",
     "c8": "^8.0.1",
     "chai": "^4.3.10",
