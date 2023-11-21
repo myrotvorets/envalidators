@@ -31,8 +31,8 @@
   "license": "MIT",
   "devDependencies": {
     "@myrotvorets/eslint-config-myrotvorets-ts": "^2.24.0",
-    "@types/chai": "^4.3.10",
-    "@types/mocha": "^10.0.4",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.5",
     "@types/validator": "^13.11.7",
     "c8": "^8.0.1",
     "chai": "^4.3.10",
