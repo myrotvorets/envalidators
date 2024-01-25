@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
 import { EnvError } from 'envalid';
 import { iso31661Alpha2, iso31661Alpha2List } from '../../lib';
+
+import '../types';
 
 const validator = iso31661Alpha2();
 const validatorList = iso31661Alpha2List();
