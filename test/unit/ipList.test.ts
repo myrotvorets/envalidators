@@ -1,8 +1,8 @@
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
 import { EnvError } from 'envalid';
 import ipaddr from 'ipaddr.js';
 import { ipList, ipListEx } from '../../lib';
+
+import '../types';
 
 const validator = ipList();
 const validatorEx = ipListEx();

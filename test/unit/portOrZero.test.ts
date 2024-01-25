@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
 import { EnvError } from 'envalid';
 import { portOrZero } from '../../lib';
+
+import '../types';
 
 const validator = portOrZero();
 
