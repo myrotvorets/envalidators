@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-nested-functions */
+/* eslint-disable sonarjs/no-hardcoded-ip */
 import { EnvError } from 'envalid';
 import ipaddr from 'ipaddr.js';
 import { ipList, ipListEx } from '../../lib';
