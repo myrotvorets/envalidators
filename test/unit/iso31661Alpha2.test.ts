@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-nested-functions */
 import { EnvError } from 'envalid';
 import { iso31661Alpha2, iso31661Alpha2List } from '../../lib';
 

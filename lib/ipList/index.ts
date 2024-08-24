@@ -31,7 +31,7 @@ export const ipListEx = makeValidator((input: string) => {
 
     try {
         return items.map((s) => ipaddr.process(s.trim()));
-    } catch (e) {
+    } catch {
         throw new EnvError(`Invalid IP list input: "${input}"`);
     }
 });
