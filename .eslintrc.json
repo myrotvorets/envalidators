@@ -1,14 +1,22 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2019,
+    "ecmaVersion": 2022,
     "project": ["./tsconfig.json"]
   },
+  "reportUnusedDisableDirectives": true,
   "extends": [
-    "@myrotvorets/myrotvorets-ts",
-    "plugin:mocha/recommended"
+    "@myrotvorets/myrotvorets-ts"
+  ],
+  "overrides": [
+    {
+      "files": ["test/**/*.ts"],
+      "rules": {
+        "no-await-in-loop":"off",
+        "sonarjs/no-hardcoded-ip": "off"
+      }
+    }
   ],
   "env": {
-    "node": true,
-    "mocha": true
+    "node": true
   }
 }
