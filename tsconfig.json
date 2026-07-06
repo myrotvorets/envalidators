@@ -13,6 +13,7 @@
         "noFallthroughCasesInSwitch": true,
         "esModuleInterop": true,
         "resolveJsonModule": false,
+        "types": ["node"]
     },
     "compileOnSave": true
 }
