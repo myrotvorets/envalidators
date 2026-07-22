@@ -40,7 +40,7 @@
     "node-reporter-gha": "^2.0.8",
     "node-reporter-sonarqube": "^1.0.3",
     "tsx": "^4.23.0",
-    "typescript": "^6.0.0"
+    "typescript": "^7.0.0"
   },
   "dependencies": {
     "ipaddr.js": "^2.0.0",
